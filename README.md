@@ -17,12 +17,109 @@
 - 它包含控制器（Controllers），用于定义不同的路由和处理请求。这些控制器将请求传递给 Core 层进行处理，并返回响应给客户端。
   
 ### Core 层
-![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/4369a616-2778-438d-8667-b915e85f732c)
 
-   
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/09a9005e-cf59-4479-a83d-834fff31dd1f)
+
 #### Application（应用）: 层协调领域对象之间的交互，处理用户的请求，并调用适当的领域服务来执行业务逻辑。
+
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/8d3a306d-f7ae-494c-9cb1-10186d852dda)
+
+CompanyHandler ：文件主要实现: 接收从MediatR 传过来的Command 的处理机制。
+
+Configuration ：
+
+  Behaviours ：
+  
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/d9bc5175-8d86-4fd6-b0a3-bdc75646a4e1)
+
+  Commands ：
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/4a048263-7cc3-459f-9ad9-0e43280c3a87)
+  
+  Data ：
+  
+  ISqlConnectionFactory:
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/6c3c920e-7ead-48ab-935e-7938eac47a9e)
+  
+  ITransactionContext:
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/14ae83fe-d644-40a4-86e6-d3fbf54fe195)
+
+    
+  
+
+
+
 #### Data(数据):Data 模块用于处理数据访问和持久化的相关逻辑
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/ef3d1943-3c01-4b57-976d-e5819c9e2a4e)
+
 #### Domain(领域): 是整个核心层的核心，它包含了应用程序的核心业务逻辑和领域模型。模块定义了领域的概念、实体、值对象、聚合根以及领域服务等.
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/047ef80a-0c25-4bdd-873a-79c5b9caa290)
+
+- Companys ：表示业务领域中的不同公司实体。
+  
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/560bf3fb-6bf2-4840-ae5b-9b0e39845048)
+  
+  Company类：Company 可能是表示公司实体。在DDD中，公司被视为领域模型中的核心概念之一，具有自己的属性、行为和业务规则。
+  
+  CompanyEntityTypeConfiguration类：将 Company 实体映射到数据存储中的关系数据库。在DDD中，这种配置类常用于ORM（对象关系映射）框架，以便将领域实体与数据库表进行映射。
+  
+  ICompanyRepository：定义了对于 Company 实体的持久化与查询操作。在DDD中，仓储（Repository）模式通常用于管理领域实体的持久化，该接口定义了对于 Company 实体的增删改查等方法。
+  
+  Warehouse：在DDD中，Warehouse 可能被视为领域模型中的另一个核心概念，具有自己的属性、行为和业务规则。
+  
+  WarehouseEntityTypeConfiguration：用于定义如何将 Warehouse 实体映射到数据存储中的关系数据库。
+  
+  
+- SeedWrok ：Seed Work（种子工作）是一种软件开发模式，旨在通过创建和验证基础架构代码来帮助项目启动。在领域层中，Seed Work 可能指的是一些用于快速原型开发和迭代的基础设施代码或类。
+  
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/49839694-def8-4931-be0b-25178ebcab88)
+  
+  DomainEventBase（领域事件基类）: DomainEventBase 可能是一个基类，用于实现领域事件的通用行为和属性。在DDD中，领域事件用于记录领域模型中发生的重要事实或状态变化，以便在系统中进行响应和处理。
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/714531c7-9122-4572-8a1d-40dfcb22c9b0)
+
+  Entity（实体）:
+  
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/d09eb187-0c35-491d-b46f-5ae516f8b262)
+
+  IAggregateRoot（聚合根接口）:
+  
+  IDomainEvent（领域事件接口）:
+  
+![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/60ccea28-6e58-4883-8815-fcb61f9bfc1a)
+  
+  IDomainEventsDispatcher（领域事件分发器接口）:
+
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/da56b404-c916-41ab-8ecf-e36265574b7d)
+
+  IgnoreMemberAttribute（成员忽略属性）:
+
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/93f50133-0bf6-41bc-bff5-a84c766938dd)
+
+
+  IRepository（仓储接口）:
+
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/ff2ef923-1bc2-4c78-9d83-ed8c1bafd336)
+
+  IUnitOfWork（工作单元接口）:
+
+  ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/389058ce-a782-43d6-a5a8-b90037ce122b)
+
+
+  ValueObject（值对象）: 具体作用在下方有描述
+
+- ShareKernel ：Share Kernel（共享内核）是指操作系统中多个进程共享的核心部分，以提供资源共享和进程间通信。在领域层中，ShareKernel 可能指的是领域模型中被多个领域实体共享的核心概念或逻辑。
+ 
+  这里目前只有一个Address:
+  
+- Warehouses ：
+
+  IWarehouseChecker ：该接口可能用于仓库（Warehouse）的验证操作。
+  IWarehouseRepository ：仓库（Warehouse）的数据访问层接口,仓库领域模型的数据访问操作抽象出来
+  WarehouseBusinessValidateException ：自定义异常类，用于表示仓库业务验证异常
+
+  
+- IEntity ：用于表示领域模型中的实体对象，其他实体类可以实现该接口以符合一致的规范。
+
+
 #### Extensions(扩展): 模块用于扩展其他模块或框架的功能，为领域对象提供一些通用的扩展方法或工具类。
 #### Infrastructure(基础设施):负责处理与基础设施相关的实现，例如数据库连接、文件系统、网络通信等。
 - **Infrastructure
@@ -55,10 +152,7 @@
   ![image](https://github.com/dickens1998/ComapnyServer/assets/61829821/bffa4a75-4b87-4fd0-afef-ed9f9decd74b)
 
   
-过将不同的组件划分到不同的模块中，Infrastructure 层实现了对不同领域概念和技术实现的组织和管理。DataAccessModule 和 MySqlConnectionFactory 提供了与数据访问相关的功能，
-CompanyRepository 和 DomainEventsDispatcher 则涉及到与领域对象的交互.DomainModule 配置领域层组件，SpecificationExtensions 提供了领域规约的支持。
-Mediator 和 MediatorExtensions 是为了解耦领域对象之间的交互而引入的。
-这种分层和组织的方式有助于保持代码的可维护性和可测试性，同时也便于团队成员理解和修改代码。
+#### 通过将不同的组件划分到不同的模块中，Infrastructure 层实现了对不同领域概念和技术实现的组织和管理。DataAccessModule 和 MySqlConnectionFactory 提供了与数据访问相关的功能，CompanyRepository 和 DomainEventsDispatcher 则涉及到与领域对象的交互.DomainModule 配置领域层组件，SpecificationExtensions 提供了领域规约的支持。 Mediator 和 MediatorExtensions 是为了解耦领域对象之间的交互而引入的。这种分层和组织的方式有助于保持代码的可维护性和可测试性，同时也便于团队成员理解和修改代码。
 
   
 
