@@ -24,7 +24,7 @@ public class WarehouseCommandHandler : IRequestHandler<AddWarehouseCommand, Guid
     {
         var company = await _companyRepository.GetByIdAsync(request.CompanyId).ConfigureAwait(false);
         if (!_warehouseChecker.IsUniqueWithName(company.Id, request.Name))
-            throw new WarehouseBusinessValidateException("Warehouse name must be unique");
+            throw new WarehouseBusinessValidateException("Warehouse name already exists.");
 
         var warehouse = company.AddWarehouse(request.Name, request.Code, request.Address, request.Description);
 

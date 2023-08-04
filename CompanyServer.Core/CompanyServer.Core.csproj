@@ -22,4 +22,5 @@
     <ProjectReference Include="..\CompanyServer.Message\CompanyServer.Message.csproj" />
   </ItemGroup>
 
+
 </Project>

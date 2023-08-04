@@ -16,7 +16,7 @@ public abstract class Entity
     /// <summary>
     /// DomainEvents 是一个只读属性，用于获取领域事件的只读集合。它通过将 _domainEvents 转换为只读集合返回，使得外部代码只能读取领域事件，而不能修改它们。
     /// </summary>
-    public IReadOnlyCollection<IDomainEvent>? DomainEvents => _domainEvents?.AsReadOnly();
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
 
     /// <summary IDomainEvent="对象，并将领域事件添加到列表中。">
     /// AddDomainEvent 方法用于向 _domainEvents 列表添加领域事件

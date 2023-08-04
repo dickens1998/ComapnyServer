@@ -21,4 +21,6 @@ public class CompanyRepository : ICompanyRepository
         await _dbContext.Companies.AddAsync(company).ConfigureAwait(false);
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
     }
+
+    public void DeleteAsync(Company company) => _dbContext.Companies.Remove(company);
 }

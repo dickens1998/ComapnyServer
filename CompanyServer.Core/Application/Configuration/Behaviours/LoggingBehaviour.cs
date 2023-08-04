@@ -3,6 +3,11 @@ using Serilog;
 
 namespace CompanyServer.Core.Application.Configuration.Behaviours;
 
+/// <summary>
+///  日志记录行为
+///  用于在处理 MediatR 请求之前记录请求的相关信息
+/// </summary>
+/// <typeparam name="TRequest"></typeparam>
 public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
 {
     private readonly ILogger _logger;

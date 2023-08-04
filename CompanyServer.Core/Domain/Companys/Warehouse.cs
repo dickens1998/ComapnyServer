@@ -30,4 +30,6 @@ public class Warehouse : IEntity, IAggregateRoot
         UpdateDate = DateTime.Now;
         Status = WarehouseStatus.Active;
     }
+    
+    
 }

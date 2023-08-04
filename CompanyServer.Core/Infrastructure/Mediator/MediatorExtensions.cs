@@ -4,6 +4,13 @@ using MediatR;
 
 namespace CompanyServer.Core.Infrastructure.Mediator;
 
+/// <summary>
+/// 用于在数据库上下文中调度和发布领域事件。
+/// 目的是将在数据库上下文中发生的领域事件派发给相关的订阅者
+/// 通过查询变更跟踪器并提取领域事件来实现此目的
+/// 使用中介器（Mediator）将这些领域事件发布给相应的订阅者
+/// 在发布前，还会清除已处理的领域事件，以确保每个事件只被处理一次。
+/// </summary>
 public static class MediatorExtensions
 {
     public static async Task DispatchDomainEventsAsync(this IMediator mediator, CompanyServerDbContext context)

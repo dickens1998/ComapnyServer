@@ -46,7 +46,13 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
     public DbSet<Company> Companies { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
 
-    public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
+    /// <summary>
+    /// 异步保存所有已更改的实体到数据库，并分发领域事件。首先通过中介器调用 DispatchDomainEventsAsync 方法来处理领域事件，
+    /// 然后调用基类的 SaveChangesAsync 方法来保存更改，并返回保存是否成功的布尔值。
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default)
     {
         await _mediator.DispatchDomainEventsAsync(this);
 
@@ -72,7 +78,6 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
 
         if (transaction != _currentTransaction)
             throw new InvalidOperationException($"Transaction {transaction.TransactionId} is not current");
-
 
         try
         {

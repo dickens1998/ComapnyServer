@@ -4,10 +4,10 @@ public class DomainEventBase : IDomainEvent
 {
     public DomainEventBase()
     {
-        id = Guid.NewGuid();
+        Id = Guid.NewGuid();
         OccurredOn = DateTime.Now;
     }
 
-    public Guid id { get; }
+    public Guid Id { get; }
     public DateTime OccurredOn { get; }
 }
