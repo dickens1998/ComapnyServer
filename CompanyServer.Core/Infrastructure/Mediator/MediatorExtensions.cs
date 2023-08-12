@@ -10,6 +10,8 @@ namespace CompanyServer.Core.Infrastructure.Mediator;
 /// 通过查询变更跟踪器并提取领域事件来实现此目的
 /// 使用中介器（Mediator）将这些领域事件发布给相应的订阅者
 /// 在发布前，还会清除已处理的领域事件，以确保每个事件只被处理一次。
+/// 可以方便地在数据库上下文中调度和发布领域事件，将这些事件派发给相应的订阅者。
+/// 这种方式遵循了 DDD 的原则，将数据持久化和领域事件处理解耦，提高了系统的可维护性和灵活性。
 /// </summary>
 public static class MediatorExtensions
 {

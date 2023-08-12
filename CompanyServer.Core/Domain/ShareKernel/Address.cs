@@ -31,9 +31,9 @@ public class Address : ValueObject
     public Address(string province, string city,
         string county, string street)
     {
-        this.Province = province;
-        this.City = city;
-        this.County = county;
-        this.Street = street;
+        Province = province;
+        City = city;
+        County = county;
+        Street = street;
     }
 }

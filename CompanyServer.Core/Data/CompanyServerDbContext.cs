@@ -24,12 +24,10 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
         _connectionString = connectionString;
         _mediator = mediator;
     }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder
         .UseMySQL(_connectionString.Value, builder => builder.CommandTimeout(60))
         .LogTo(Console.WriteLine, LogLevel.Information)
         .UseSnakeCaseNamingConvention();
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         typeof(CompanyServerDbContext).GetTypeInfo().Assembly.GetTypes()
@@ -42,7 +40,6 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CompanyEntityTypeConfiguration).Assembly);
     }
-
     public DbSet<Company> Companies { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
 
@@ -60,9 +57,7 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
 
         return true;
     }
-
     public bool HasActiveTransaction => _currentTransaction != null;
-
     public async Task<IDbContextTransaction> BeginTransactionAsync()
     {
         if (_currentTransaction != null) return null;
@@ -71,7 +66,6 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
 
         return _currentTransaction;
     }
-
     public async Task CommitTransactionAsync(IDbContextTransaction transaction)
     {
         if (transaction == null) throw new ArgumentNullException(nameof(transaction));
@@ -98,7 +92,6 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
             }
         }
     }
-
     private void RollbackTransaction()
     {
         try

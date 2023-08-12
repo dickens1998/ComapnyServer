@@ -27,7 +27,6 @@ public class WarehouseCommandHandler : IRequestHandler<AddWarehouseCommand, Guid
             throw new WarehouseBusinessValidateException("Warehouse name already exists.");
 
         var warehouse = company.AddWarehouse(request.Name, request.Code, request.Address, request.Description);
-
         await _warehouseRepository.AddAsync(warehouse).ConfigureAwait(false);
         return warehouse.Id;
     }
