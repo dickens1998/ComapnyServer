@@ -198,4 +198,4 @@ Configuration ：
 - **语言**: C#
 - **框架**: .NET 6 Api
 - **持久化**: MySQL
-- **测试**: IntegrationTests, UnitTetst (目前只是一个空框架 还未开始补充)
+- **测试**: IntegrationTests, UnitTetst
