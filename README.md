@@ -1,5 +1,4 @@
-# DDD 学习 Demo  还在完善中....
-
+# DDD 学习 Demo  
 这是一个用于学习领域驱动设计（DDD）的简单演示项目。该项目旨在展示如何实现 DDD 中的核心概念和模式，以及如何应用它们来构建具有良好架构的软件系统。
 
 ## 功能特性
@@ -198,4 +197,4 @@ Configuration ：
 - **语言**: C#
 - **框架**: .NET 6 Api
 - **持久化**: MySQL
-- **测试**: IntegrationTests, UnitTetst (目前只是一个空框架 还未开始补充)
+- **测试**: IntegrationTests, UnitTetst
