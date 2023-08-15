@@ -3,6 +3,7 @@ using System.Reflection;
 using CompanyServer.Core.Application.Configuration.Data;
 using CompanyServer.Core.Domain;
 using CompanyServer.Core.Domain.Companys;
+using CompanyServer.Core.Domain.OrderItems;
 using CompanyServer.Core.Extensions;
 using CompanyServer.Core.Infrastructure.Mediator;
 using CompanyServer.Core.Settings;
@@ -42,6 +43,8 @@ public class CompanyServerDbContext : DbContext, ITransactionContext
     }
     public DbSet<Company> Companies { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
+    
+    public DbSet<OrderItem> OrderItems { get; set; }
 
     /// <summary>
     /// 异步保存所有已更改的实体到数据库，并分发领域事件。首先通过中介器调用 DispatchDomainEventsAsync 方法来处理领域事件，
